@@ -7,6 +7,8 @@
 #include <pcl_ros/io/pcd_io.h>
 #include <pcl/common/transforms.h>
 
+#Este Script se subscribe a cada una de las nubes de puntos de cada sensor y las concatena teniendo en cuenta su ubicación espacial en una única nube de puntos
+
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr full_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr d1_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr d3_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
@@ -51,6 +53,8 @@ int main(int argc, char** argv){
     ros::init(argc, argv, "concatenate_node");
     ros::NodeHandle nh;
     pub = nh.advertise<sensor_msgs::PointCloud2>("concatenate_points",1);
+    
+    #Se implementa message_filters que permite que se implemente la función de callback una vez se ha recibido mensajes de los cuatro sensores. 
 
     message_filters::Subscriber<sensor_msgs::PointCloud2> d1_points(nh, "filter_d1",1);
     message_filters::Subscriber<sensor_msgs::PointCloud2> d3_points(nh, "filter_d3",1);
