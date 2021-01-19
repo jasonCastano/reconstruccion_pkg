@@ -13,11 +13,13 @@ import os
 
 def main(args):
     bridge = CvBridge()
-
+    #Ruta que apunta a los directorios que contienen las imágenes rgb y depth de cada sensor
     d1_rooth = "/home/alejandro/Desktop/Gaelic_Football_Punt_Kick/D1_outputs/D1"
     d3_rooth = "/home/alejandro/Desktop/Gaelic_Football_Punt_Kick/D3_outputs/D3"
     d4_rooth = "/home/alejandro/Desktop/Gaelic_Football_Punt_Kick/D4_outputs/D4"
     d5_rooth = "/home/alejandro/Desktop/Gaelic_Football_Punt_Kick/D5_outputs/D5"
+    
+    #Se declaran los topics a publicar
 
     d1_rawimgPub = rospy.Publisher("depth/image_rect_d1",Image, queue_size=1)
     d1_colimgPub = rospy.Publisher("rgb/image_rect_color_d1", Image, queue_size=1)
@@ -44,7 +46,7 @@ def main(args):
     d5_color_camInfoPub = rospy.Publisher("rgb/camera_info_d5",CameraInfo,queue_size=1)
     d5_depth_camInfoPub = rospy.Publisher("depth/camera_info_d5",CameraInfo,queue_size=1)
 
-    #CAMARA D1
+    #Parámetros intrínsecos de CAMARA D1
 
     d1_color_camInfo = CameraInfo()
     d1_color_camInfo.header.frame_id = "d1_frame"
@@ -73,7 +75,7 @@ def main(args):
     d1_depth_camInfo.R = [0.99997,0.00715,-0.00105,-0.00715,0.99995,0.00662,0.0011,-0.00661,0.99998]
     d1_depth_camInfo.P = [388.198,0.00000,253.270,0.0,0.00000,389.033,213.934,0.0,0.00000,0.00000,1.00000,0.0]
 
-    #CAMARA D3
+    #Parámetros intrínsecos de CAMARA D3
 
     d3_color_camInfo = CameraInfo()
     d3_color_camInfo.header.frame_id = "d3_frame"
@@ -102,7 +104,7 @@ def main(args):
     d3_depth_camInfo.R = [0.99997,0.00715,-0.00105,-0.00715,0.99995,0.00662,0.0011,-0.00661,0.99998]
     d3_depth_camInfo.P = [388.198,0.00000,253.270,0.0,0.00000,389.033,213.934,0.0,0.00000,0.00000,1.00000,0.0]
 
-    #CAMARA D4
+    #Parámetros intrínsecos de CAMARA D4
 
     d4_color_camInfo = CameraInfo()
     d4_color_camInfo.header.frame_id = "d4_frame"
@@ -131,7 +133,7 @@ def main(args):
     d4_depth_camInfo.R = [0.99997,0.00715,-0.00105,-0.00715,0.99995,0.00662,0.0011,-0.00661,0.99998]
     d4_depth_camInfo.P = [388.198,0.00000,253.270,0.0,0.00000,389.033,213.934,0.0,0.00000,0.00000,1.00000,0.0]
 
-    #CAMARA D5
+    #Parámetros intrínsecos de CAMARA D5
 
     d5_color_camInfo = CameraInfo()
     d5_color_camInfo.header.frame_id = "d5_frame"
@@ -161,6 +163,8 @@ def main(args):
     d5_depth_camInfo.P = [388.198,0.00000,253.270,0.0,0.00000,389.033,213.934,0.0,0.00000,0.00000,1.00000,0.0]
 
     r = rospy.Rate(5)
+    
+    #Se leen las imágenes rgb y depth de cada directorio y estas se recorren ordenadas de forma alfanumérica
 
     while not rospy.is_shutdown():
         for d1_color, d1_depth, d3_color, d3_depth, d4_color, d4_depth, d5_color, d5_depth  in zip(sorted(os.listdir(d1_rooth+"/color/")),sorted(os.listdir(d1_rooth+"/depth/")),sorted(os.listdir(d3_rooth+"/color/")),sorted(os.listdir(d3_rooth+"/depth/")),sorted(os.listdir(d4_rooth+"/color/")),sorted(os.listdir(d4_rooth+"/depth/")),sorted(os.listdir(d5_rooth+"/color/")),sorted(os.listdir(d5_rooth+"/depth/"))):
