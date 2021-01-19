@@ -13,6 +13,11 @@
 #include <pcl/sample_consensus/ransac.h>
 #include <pcl/filters/extract_indices.h>
 
+"""
+Este Script se subscribe a las nubes de puntos de los cuatro sensores e implementando un filtro CropBox se filtra un área de trabajo de interés.
+Posteriormente implementando un filtro RANSAC se reconoce los puntos pertencientes a un plano y son eliminados, lo que se busca es que se conserven
+únicamente los puntos pertencientes a los objetos, en este caso personas, que se encuentran dentro del área de trabajo. 
+"""
 using namespace std;
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr full_pc(new pcl::PointCloud<pcl::PointXYZRGB>);
 
