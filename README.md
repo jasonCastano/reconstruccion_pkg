@@ -1,5 +1,7 @@
 # Este repositorio es para la reconstrucción del entorno con 4 cámaras
 # El dataset implementado fue obtenido gracias a los datasets libres de VCL (Visual Computing Lab) - http://vcl.iti.gr/dataset/datasets-of-multiple-kinect2-rgb-d-streams-and-skeleton-tracking/
+El cómo obtuvieron las imágenes es explicado en: An integrated platform for live 3D human.pdf, algunas de estas imágenes se encuentra en el directorio *data*
+
 
 ## 1
 
