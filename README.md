@@ -63,3 +63,5 @@ Se corre *rosrun reconstruccion_pkg filter_point_cloud* que permite visualizar l
 Se corre *rosrun reconstruccion_pkg concatenate_point_cloud* se concatenan las nubes de puntos de las distintas cámaras en una única nube de puntos
 
 
+
+
